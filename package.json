@@ -1,0 +1,56 @@
+{
+  "name": "pureact",
+  "version": "0.0.1",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluejedis/pureact.git"
+  },
+  "author": "Blujedis <blujedicorp@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blujedis/pureact/issues"
+  },
+  "keywords": [
+    "react native",
+    "theme",
+    "ui library",
+    "android",
+    "ios"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "format": "prettier --write src/**/*.ts{,x}",
+    "lint": "eslint src/**/*.ts{,x}",
+    "watch": "tsc -p tsconfig.json -w",
+    "build": "npm run clean && tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
+    "test": "",
+    "prepare": "tsc"
+  },
+  "peerDependencies": {
+    "@react-native-async-storage/async-storage": "*",
+    "react": "*",
+    "react-native": "*",
+    "@expo/vector-icons": "*"
+  },
+  "devDependencies": {
+    "@expo/vector-icons": "^12.0.5",
+    "@react-native-async-storage/async-storage": "^1.17.3",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "~0.64.12",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "eslint-plugin-react-native": "^4.0.0",
+    "husky": "^7.0.4",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-native": "0.64.3",
+    "typescript": "^4.6.3"
+  }
+}
