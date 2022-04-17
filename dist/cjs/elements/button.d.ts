@@ -1,21 +1,21 @@
 import React from 'react';
-import { NamedColor, NamedStyles, ShadowProps, ThemeNormalized } from '../types';
+import { DefinedColor, ShadowProps, Theme, ThemeColor } from '../types';
 import { TouchableOpacityProps } from 'react-native';
 import { IconProps } from './icon';
 export declare type ButtonStyles = ReturnType<typeof styles>;
 export declare type ButtonStylesEnabled = Partial<Record<keyof ButtonStyles, boolean>>;
 export interface ButtonProps extends TouchableOpacityProps, ButtonStylesEnabled {
-    color?: NamedColor;
+    color?: DefinedColor | ThemeColor;
     transform?: 'capitalize' | 'uppercase' | 'lowercase';
     round?: boolean;
     disabled?: boolean;
-    size?: number;
+    size?: keyof Theme['button']['size'];
     opacity?: number;
     shadow?: ShadowProps;
     icon?: IconProps;
-    scheme?: keyof ThemeNormalized['schemes'];
+    scheme?: keyof Theme['schemes'];
 }
-declare const styles: (theme: ThemeNormalized) => {
+declare const styles: (theme: Theme) => {
     default: {
         height: number;
         width: number;
@@ -32,13 +32,25 @@ declare const styles: (theme: ThemeNormalized) => {
     uppercase: {
         textTransform: "uppercase";
     };
-    transparent: NamedStyles;
-    primary: NamedStyles;
-    secondary: NamedStyles;
-    danger: NamedStyles;
-    warning: NamedStyles;
-    info: NamedStyles;
-    success: NamedStyles;
+    sm: {
+        height: number;
+        width: number;
+    };
+    md: {
+        height: number;
+        width: number;
+    };
+    lg: {
+        height: number;
+        width: number;
+    };
+    transparent: import("../types").NamedStyles;
+    primary: import("../types").NamedStyles;
+    secondary: import("../types").NamedStyles;
+    danger: import("../types").NamedStyles;
+    warning: import("../types").NamedStyles;
+    info: import("../types").NamedStyles;
+    success: import("../types").NamedStyles;
 };
 declare const _default: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<React.FC<ButtonProps>>>;
 export default _default;

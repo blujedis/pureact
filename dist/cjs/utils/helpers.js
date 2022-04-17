@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getIcon = exports.normalizeTheme = exports.toColor = exports.createColorMap = exports.createTheme = exports.mergeObject = exports.noop = void 0;
+exports.createSchemes = exports.toColor = exports.createColorMap = exports.createTheme = exports.mergeObject = exports.noop = void 0;
 const config_1 = require("../config");
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const noop = (...args) => { return; };
@@ -47,21 +47,30 @@ exports.createTheme = createTheme;
 function createColorMap(theme) {
     return {
         ...config_1.palette,
-        ...config_1.html,
+        ...config_1.named,
         ...theme.colors
     };
 }
 exports.createColorMap = createColorMap;
+/**
+ * Converts named color to mapped value.
+ *
+ * @param color the named color to be converted.
+ */
 function toColor(color, theme) {
-    const themeColors = ((theme && theme.colors) || {});
-    if (typeof color === 'object') {
-        const result = {};
-        for (const k in color) {
-            result[k] = toColor(color[k]);
-        }
-        return result;
-    }
-    return themeColors[color] || config_1.html[color] || config_1.palette[color] || color;
+    // if (typeof color === 'object') {
+    //   const result = {} as Record<string, string>;
+    //   for (const k in color) {
+    //     result[k] = toColor(color[k])
+    //   }
+    //   return result;
+    // }
+    theme = theme || {};
+    const themeColors = {
+        ...theme.colors,
+        ...theme.schemes
+    };
+    return themeColors[color] || config_1.named[color] || config_1.palette[color] || color;
 }
 exports.toColor = toColor;
 /**
@@ -69,19 +78,32 @@ exports.toColor = toColor;
  *
  * @param theme the theme to be normalized.
  */
-const normalizeTheme = (theme) => {
-    const { colors: currentColors, schemes: currentSchemes, ...rest } = theme;
-    const schemes = toColor(currentSchemes);
-    const colors = { ...toColor(currentColors), ...schemes };
-    // Be sure to presrve original schemes in new object.
-    return {
-        schemes,
-        colors,
-        ...rest
-    };
+// export const normalizeTheme = <T extends Theme>(theme: T) => {
+//   const { colors: currentColors, schemes: currentSchemes, ...rest } = theme;
+//   const schemes = toColor(currentSchemes);
+//   const colors = { ...toColor(currentColors), ...schemes };
+//   // Be sure to presrve original schemes in new object.
+//   return {
+//     schemes,
+//     colors,
+//     ...rest
+//   };
+// };
+/**
+ * Creates map of color schemes.
+ *
+ * @param theme the active theme.
+ * @param key the key for creating the scheme.
+ */
+const createSchemes = (theme, key = ['backgroundColor']) => {
+    return Object.keys(theme.schemes).reduce((a, c) => {
+        const obj = {};
+        key.forEach(k => {
+            obj[k] = theme.schemes[c];
+        });
+        a[c] = obj;
+        return a;
+    }, {});
 };
-exports.normalizeTheme = normalizeTheme;
-function getIcon() {
-}
-exports.getIcon = getIcon;
+exports.createSchemes = createSchemes;
 //# sourceMappingURL=helpers.js.map

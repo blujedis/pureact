@@ -1,5 +1,5 @@
 import palette from './palette';
-import html from './html';
+import named from './named';
 declare const config: {
     dark: boolean;
     global: {
@@ -7,22 +7,22 @@ declare const config: {
         elevation: number;
     };
     schemes: {
-        default: import("..").NamedColor;
-        primary: import("..").NamedColor;
-        secondary: import("..").NamedColor;
-        danger: import("..").NamedColor;
-        warning: import("..").NamedColor;
-        info: import("..").NamedColor;
-        success: import("..").NamedColor;
+        default: import("..").DefinedColor;
+        primary: import("..").DefinedColor;
+        secondary: import("..").DefinedColor;
+        danger: import("..").DefinedColor;
+        warning: import("..").DefinedColor;
+        info: import("..").DefinedColor;
+        success: import("..").DefinedColor;
         transparent: string;
     };
     colors: {
-        text: import("..").NamedColor;
-        muted: import("..").NamedColor;
-        card: import("..").NamedColor;
-        notification: import("..").NamedColor;
-        background: import("..").NamedColor;
-        border: import("..").NamedColor;
+        text: import("..").DefinedColor;
+        muted: import("..").DefinedColor;
+        card: import("..").DefinedColor;
+        notification: import("..").DefinedColor;
+        background: import("..").DefinedColor;
+        border: import("..").DefinedColor;
     };
     margin: {
         none: number;
@@ -56,21 +56,35 @@ declare const config: {
     };
     input: {
         size: {
+            sm: {
+                height: number;
+            };
             md: {
+                height: number;
+            };
+            lg: {
                 height: number;
             };
         };
     };
     button: {
         size: {
+            sm: {
+                height: number;
+                width: number;
+            };
             md: {
+                height: number;
+                width: number;
+            };
+            lg: {
                 height: number;
                 width: number;
             };
         };
     };
     typography: {
-        color: import("..").NamedColor;
+        color: import("..").DefinedColor;
         xs: number;
         sm: number;
         body: number;
@@ -104,7 +118,7 @@ declare const config: {
         };
         shadowOpacity: number;
         shadowRadius: number;
-        shadowColor: import("..").NamedColor;
+        shadowColor: import("..").DefinedColor;
     };
 };
-export { html, palette, config };
+export { named, palette, config };

@@ -20,16 +20,18 @@ const Icon: FC<IconProps> = (props) => {
     ...props
   };
 
-  const { family, name, size, color, ...rest } = props as BaseProps<IconProps, IconStyles>;
+  const { family, name, size, color, theme, styles, ...rest } = props as BaseProps<IconProps, IconStyles>;
 
   const IconComponent = getIcon(family);
 
   if (!name || !IconComponent)
     return null;
 
+  const sizeAdj = typeof size === 'string' ? theme.icon.size[size] : size;
+
   const iconProps = {
     name,
-    size,
+    size: sizeAdj,
     color
   };
 
@@ -40,13 +42,9 @@ const Icon: FC<IconProps> = (props) => {
 };
 
 const styles = (theme: Theme) => {
-
-
   return StyleSheet.create({
 
   });
-
-  
 }
 
 export default withPureact(Icon, styles);

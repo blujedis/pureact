@@ -1,4 +1,4 @@
-import { NamedColor, ThemeNormalized } from '../types';
+import { Theme, DefinedColor, NamedStyles } from '../types';
 export declare const noop: (...args: unknown[]) => void;
 /**
  * Merges source into target object with optional extend for merging other values.
@@ -21,35 +21,23 @@ export declare const createTheme: <C extends Record<string, any>, B extends Reco
         elevation: number;
     };
     schemes: {
-        default: NamedColor;
-        /**
-         * Merges source into target object with optional extend for merging other values.
-         *
-         * @param target the target to merge into.
-         * @param source the source to merge from into target.
-         */
-        primary: NamedColor;
-        secondary: NamedColor;
-        danger: NamedColor;
-        warning: NamedColor;
-        info: NamedColor;
-        success: NamedColor;
+        default: DefinedColor;
+        primary: DefinedColor;
+        secondary: DefinedColor;
+        danger: DefinedColor;
+        warning: DefinedColor;
+        info: DefinedColor;
+        success: DefinedColor;
         transparent: string;
     };
     colors: {
-        text: NamedColor;
-        muted: NamedColor;
-        card: NamedColor;
-        notification: NamedColor;
-        background: NamedColor;
-        border: NamedColor;
+        text: DefinedColor;
+        muted: DefinedColor;
+        card: DefinedColor;
+        notification: DefinedColor;
+        background: DefinedColor;
+        border: DefinedColor;
     };
-    /**
-     * Merges source into target object with optional extend for merging other values.
-     *
-     * @param target the target to merge into.
-     * @param source the source to merge from into target.
-     */
     margin: {
         none: number;
         xs: number;
@@ -82,21 +70,35 @@ export declare const createTheme: <C extends Record<string, any>, B extends Reco
     };
     input: {
         size: {
+            sm: {
+                height: number;
+            };
             md: {
+                height: number;
+            };
+            lg: {
                 height: number;
             };
         };
     };
     button: {
         size: {
+            sm: {
+                height: number;
+                width: number;
+            };
             md: {
+                height: number;
+                width: number;
+            };
+            lg: {
                 height: number;
                 width: number;
             };
         };
     };
     typography: {
-        color: NamedColor;
+        color: DefinedColor;
         xs: number;
         sm: number;
         body: number;
@@ -130,7 +132,7 @@ export declare const createTheme: <C extends Record<string, any>, B extends Reco
         };
         shadowOpacity: number;
         shadowRadius: number;
-        shadowColor: NamedColor;
+        shadowColor: DefinedColor;
     };
 }>(isDark?: boolean, extend?: C, base?: B) => B & C & {
     dark: boolean;
@@ -140,21 +142,13 @@ export declare const createTheme: <C extends Record<string, any>, B extends Reco
  *
  * @param theme optional theme to extract colors from.
  */
-export declare function createColorMap<T extends ThemeNormalized>(theme: T): {
-    text: import("../types").UserColor;
-    muted: import("../types").UserColor;
-    card: import("../types").UserColor;
-    notification: import("../types").UserColor;
-    background: import("../types").UserColor;
-    border: import("../types").UserColor;
-    transparent: import("../types").UserColor;
-    default: import("../types").UserColor;
-    primary: import("../types").UserColor;
-    secondary: import("../types").UserColor;
-    danger: import("../types").UserColor;
-    warning: import("../types").UserColor;
-    info: import("../types").UserColor;
-    success: import("../types").UserColor;
+export declare function createColorMap<T extends Theme>(theme: T): {
+    text: DefinedColor;
+    muted: DefinedColor;
+    card: DefinedColor;
+    notification: DefinedColor;
+    background: DefinedColor;
+    border: DefinedColor;
     aliceblue: string;
     antiquewhite: string;
     aqua: string;
@@ -228,11 +222,6 @@ export declare function createColorMap<T extends ThemeNormalized>(theme: T): {
     lightsalmon: string;
     lightseagreen: string;
     lightskyblue: string;
-    /**
-     * Converts an object of named colors to mapped values.
-     *
-     * @param colors an object containing colors to convert to string.
-     */
     lightslategray: string;
     lightsteelblue: string;
     lightyellow: string;
@@ -272,6 +261,12 @@ export declare function createColorMap<T extends ThemeNormalized>(theme: T): {
     pink: string;
     plum: string;
     powderblue: string;
+    /**
+     * Creates map of color schemes.
+     *
+     * @param theme the active theme.
+     * @param key the key for creating the scheme.
+     */
     purple: string;
     rebeccapurple: string;
     red: string;
@@ -301,6 +296,7 @@ export declare function createColorMap<T extends ThemeNormalized>(theme: T): {
     whitesmoke: string;
     yellow: string;
     yellowgreen: string;
+    transparent: string;
     slate: string;
     slate50: string;
     slate100: string;
@@ -553,58 +549,46 @@ export declare function createColorMap<T extends ThemeNormalized>(theme: T): {
     carbon900: string;
 };
 /**
- * Converts an object of named colors to mapped values.
- *
- * @param colors an object containing colors to convert to string.
- */
-export declare function toColor<T extends Record<string, NamedColor>>(colors: T, theme?: ThemeNormalized): Record<keyof T, string>;
-/**
  * Converts named color to mapped value.
  *
  * @param color the named color to be converted.
  */
-export declare function toColor(color: NamedColor, theme?: ThemeNormalized): string;
+export declare function toColor(color: DefinedColor, theme?: Theme): string;
 /**
  * Normalizes theme converting values as needed or ensuring defaults.
  *
  * @param theme the theme to be normalized.
  */
-export declare const normalizeTheme: <T extends {
+/**
+ * Creates map of color schemes.
+ *
+ * @param theme the active theme.
+ * @param key the key for creating the scheme.
+ */
+export declare const createSchemes: <T extends {
     dark: boolean;
     global: {
         base: number;
         elevation: number;
     };
     schemes: {
-        default: NamedColor;
-        /**
-         * Merges source into target object with optional extend for merging other values.
-         *
-         * @param target the target to merge into.
-         * @param source the source to merge from into target.
-         */
-        primary: NamedColor;
-        secondary: NamedColor;
-        danger: NamedColor;
-        warning: NamedColor;
-        info: NamedColor;
-        success: NamedColor;
+        default: DefinedColor;
+        primary: DefinedColor;
+        secondary: DefinedColor;
+        danger: DefinedColor;
+        warning: DefinedColor;
+        info: DefinedColor;
+        success: DefinedColor;
         transparent: string;
     };
     colors: {
-        text: NamedColor;
-        muted: NamedColor;
-        card: NamedColor;
-        notification: NamedColor;
-        background: NamedColor;
-        border: NamedColor;
+        text: DefinedColor;
+        muted: DefinedColor;
+        card: DefinedColor;
+        notification: DefinedColor;
+        background: DefinedColor;
+        border: DefinedColor;
     };
-    /**
-     * Merges source into target object with optional extend for merging other values.
-     *
-     * @param target the target to merge into.
-     * @param source the source to merge from into target.
-     */
     margin: {
         none: number;
         xs: number;
@@ -637,21 +621,35 @@ export declare const normalizeTheme: <T extends {
     };
     input: {
         size: {
+            sm: {
+                height: number;
+            };
             md: {
+                height: number;
+            };
+            lg: {
                 height: number;
             };
         };
     };
     button: {
         size: {
+            sm: {
+                height: number;
+                width: number;
+            };
             md: {
+                height: number;
+                width: number;
+            };
+            lg: {
                 height: number;
                 width: number;
             };
         };
     };
     typography: {
-        color: NamedColor;
+        color: DefinedColor;
         xs: number;
         sm: number;
         body: number;
@@ -685,7 +683,6 @@ export declare const normalizeTheme: <T extends {
         };
         shadowOpacity: number;
         shadowRadius: number;
-        shadowColor: NamedColor;
+        shadowColor: DefinedColor;
     };
-}>(theme: T) => ThemeNormalized<T>;
-export declare function getIcon(): void;
+}, K extends "color" | "backgroundColor" | "borderColor">(theme: T, key?: K[]) => Record<"transparent" | "default" | "primary" | "secondary" | "danger" | "warning" | "info" | "success", NamedStyles>;

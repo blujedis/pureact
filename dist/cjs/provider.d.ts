@@ -7,22 +7,22 @@ declare const ThemeContext: React.Context<PureactContext<{
         elevation: number;
     };
     schemes: {
-        default: import("./types").NamedColor;
-        primary: import("./types").NamedColor;
-        secondary: import("./types").NamedColor;
-        danger: import("./types").NamedColor;
-        warning: import("./types").NamedColor;
-        info: import("./types").NamedColor;
-        success: import("./types").NamedColor;
+        default: import("./types").DefinedColor;
+        primary: import("./types").DefinedColor;
+        secondary: import("./types").DefinedColor;
+        danger: import("./types").DefinedColor;
+        warning: import("./types").DefinedColor;
+        info: import("./types").DefinedColor;
+        success: import("./types").DefinedColor;
         transparent: string;
     };
     colors: {
-        text: import("./types").NamedColor;
-        muted: import("./types").NamedColor;
-        card: import("./types").NamedColor;
-        notification: import("./types").NamedColor;
-        background: import("./types").NamedColor;
-        border: import("./types").NamedColor;
+        text: import("./types").DefinedColor;
+        muted: import("./types").DefinedColor;
+        card: import("./types").DefinedColor;
+        notification: import("./types").DefinedColor;
+        background: import("./types").DefinedColor;
+        border: import("./types").DefinedColor;
     };
     margin: {
         none: number;
@@ -56,21 +56,35 @@ declare const ThemeContext: React.Context<PureactContext<{
     };
     input: {
         size: {
+            sm: {
+                height: number;
+            };
             md: {
+                height: number;
+            };
+            lg: {
                 height: number;
             };
         };
     };
     button: {
         size: {
+            sm: {
+                height: number;
+                width: number;
+            };
             md: {
+                height: number;
+                width: number;
+            };
+            lg: {
                 height: number;
                 width: number;
             };
         };
     };
     typography: {
-        color: import("./types").NamedColor;
+        color: import("./types").DefinedColor;
         xs: number;
         sm: number;
         body: number;
@@ -104,7 +118,7 @@ declare const ThemeContext: React.Context<PureactContext<{
         };
         shadowOpacity: number;
         shadowRadius: number;
-        shadowColor: import("./types").NamedColor;
+        shadowColor: import("./types").DefinedColor;
     };
 }>>;
 declare function ThemeProvider(props: PropsWithChildren<PureactOptions>): JSX.Element;
@@ -115,22 +129,22 @@ declare const useTheme: () => PureactContext<{
         elevation: number;
     };
     schemes: {
-        default: import("./types").NamedColor;
-        primary: import("./types").NamedColor;
-        secondary: import("./types").NamedColor;
-        danger: import("./types").NamedColor;
-        warning: import("./types").NamedColor;
-        info: import("./types").NamedColor;
-        success: import("./types").NamedColor;
+        default: import("./types").DefinedColor;
+        primary: import("./types").DefinedColor;
+        secondary: import("./types").DefinedColor;
+        danger: import("./types").DefinedColor;
+        warning: import("./types").DefinedColor;
+        info: import("./types").DefinedColor;
+        success: import("./types").DefinedColor;
         transparent: string;
     };
     colors: {
-        text: import("./types").NamedColor;
-        muted: import("./types").NamedColor;
-        card: import("./types").NamedColor;
-        notification: import("./types").NamedColor;
-        background: import("./types").NamedColor;
-        border: import("./types").NamedColor;
+        text: import("./types").DefinedColor;
+        muted: import("./types").DefinedColor;
+        card: import("./types").DefinedColor;
+        notification: import("./types").DefinedColor;
+        background: import("./types").DefinedColor;
+        border: import("./types").DefinedColor;
     };
     margin: {
         none: number;
@@ -164,21 +178,35 @@ declare const useTheme: () => PureactContext<{
     };
     input: {
         size: {
+            sm: {
+                height: number;
+            };
             md: {
+                height: number;
+            };
+            lg: {
                 height: number;
             };
         };
     };
     button: {
         size: {
+            sm: {
+                height: number;
+                width: number;
+            };
             md: {
+                height: number;
+                width: number;
+            };
+            lg: {
                 height: number;
                 width: number;
             };
         };
     };
     typography: {
-        color: import("./types").NamedColor;
+        color: import("./types").DefinedColor;
         xs: number;
         sm: number;
         body: number;
@@ -212,7 +240,7 @@ declare const useTheme: () => PureactContext<{
         };
         shadowOpacity: number;
         shadowRadius: number;
-        shadowColor: import("./types").NamedColor;
+        shadowColor: import("./types").DefinedColor;
     };
 }>;
 export { ThemeContext, ThemeProvider, useTheme };

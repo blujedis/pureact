@@ -26,7 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.useTheme = exports.ThemeProvider = exports.ThemeContext = void 0;
 const react_1 = __importStar(require("react"));
 const helpers_1 = require("./utils/helpers");
-const helpers_2 = require("./utils/helpers");
 const themes_1 = require("./themes");
 const ThemeContext = (0, react_1.createContext)({});
 exports.ThemeContext = ThemeContext;
@@ -37,20 +36,18 @@ function ThemeProvider(props) {
         ...props
     };
     const { children, theme: initTheme } = props;
-    const [activeTheme, setActiveTheme] = (0, react_1.useState)((0, helpers_2.normalizeTheme)(initTheme));
+    const [activeTheme, setActiveTheme] = (0, react_1.useState)(initTheme);
     const ctx = {
         current: activeTheme,
         mode: (activeTheme.dark ? 'dark' : 'light'),
         modify: (theme) => {
             const newTheme = (0, helpers_1.mergeObject)(activeTheme, theme);
-            const normalized = (0, helpers_2.normalizeTheme)(newTheme);
-            setActiveTheme(normalized);
-            return normalized;
+            setActiveTheme(newTheme);
+            return newTheme;
         },
         replace: (theme) => {
-            const normalized = (0, helpers_2.normalizeTheme)(theme);
-            setActiveTheme(normalized);
-            return normalized;
+            setActiveTheme(theme);
+            return theme;
         }
     };
     return (<ThemeContext.Provider value={ctx}>

@@ -82,16 +82,24 @@ exports.icon = {
 };
 exports.input = {
     size: {
-        md: {
-            height: base * 3
-        }
+        sm: { height: base * 2.75 },
+        md: { height: base * 3 },
+        lg: { height: base * 3.25 },
     }
 };
 exports.button = {
     size: {
+        sm: {
+            height: exports.input.size.sm.height,
+            width: exports.input.size.sm.height * 1.6
+        },
         md: {
             height: exports.input.size.md.height,
             width: exports.input.size.md.height * 1.6
+        },
+        lg: {
+            height: exports.input.size.lg.height,
+            width: exports.input.size.lg.height * 1.6
         }
     }
 };

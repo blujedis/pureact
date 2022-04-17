@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.config = exports.palette = exports.html = void 0;
+exports.config = exports.palette = exports.named = void 0;
 const palette_1 = __importDefault(require("./palette"));
 exports.palette = palette_1.default;
-const html_1 = __importDefault(require("./html"));
-exports.html = html_1.default;
+const named_1 = __importDefault(require("./named"));
+exports.named = named_1.default;
 const common_1 = require("./common");
 const config = {
     dark: false,

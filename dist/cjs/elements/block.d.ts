@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeNormalized } from '../types';
+import { Theme } from '../types';
 import { ViewProps } from 'react-native';
 export declare type BlockStyles = ReturnType<typeof styles>;
 export declare type BlockStylesEnabled = Partial<Record<keyof BlockStyles, boolean>>;
@@ -11,7 +11,7 @@ export interface BlockProps extends ViewProps, BlockStylesEnabled {
     space?: number;
     safe?: boolean;
 }
-declare const styles: (theme: ThemeNormalized) => {
+declare const styles: (theme: Theme) => {
     column: {
         flexDirection: "column";
     };
@@ -46,7 +46,7 @@ declare const styles: (theme: ThemeNormalized) => {
     card: {
         borderRadius: number;
         borderWidth: number;
-        borderColor: import("../types").UserColor;
+        borderColor: import("../types").DefinedColor;
     };
     shadow: {
         elevation: number;
@@ -56,7 +56,7 @@ declare const styles: (theme: ThemeNormalized) => {
         };
         shadowOpacity: number;
         shadowRadius: number;
-        shadowColor: import("../types").NamedColor;
+        shadowColor: import("../types").DefinedColor;
     };
 };
 declare const _default: React.ForwardRefExoticComponent<BlockProps & React.RefAttributes<React.FC<BlockProps>>>;

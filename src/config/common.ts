@@ -1,4 +1,4 @@
-
+import {  } from 'react-native';
 import palette from './palette';
 import { DefinedColor } from '../types';
 
@@ -6,7 +6,6 @@ const base = 16;
 
 export const global = {
   base,
-  elevation: 1
 };
 
 // will be merged with colors below.
@@ -18,12 +17,12 @@ export const schemes = {
   warning: palette.yellow600 as DefinedColor,
   info: palette.sky600 as DefinedColor,
   success: palette.emerald600 as DefinedColor,
+  muted: palette.slate100 as DefinedColor,
   transparent: palette.transparent
 };
 
 export const colors = {
   text: palette.slate700 as DefinedColor,
-  muted: palette.slate100 as DefinedColor,
   card: palette.slate100 as DefinedColor,
   notification: palette.rose600 as DefinedColor,
   background: palette.slate50 as DefinedColor,
@@ -31,7 +30,6 @@ export const colors = {
 };
 
 export const typography = {
-  color: colors.text,
   xs: base * 0.65,
   sm: base * 0.75,
   body: base * 0.875,
@@ -40,12 +38,12 @@ export const typography = {
   xl: base * 1.25,
   x2l: base * 1.5,
   x3l: base * 1.75,
-  h1: base * 2.75,
-  h2: base * 2.375,
-  h3: base * 1.875,
-  h4: base * 1.5,
-  h5: base * 1.3125,
   h6: base * 1.125,
+  h5: base * 1.3125,
+  h4: base * 1.5,
+  h3: base * 1.875,
+  h2: base * 2.375,
+  h1: base * 2.75,
 };
 
 export const margin = {
@@ -116,6 +114,7 @@ export const shadow = {
   shadowOpacity: 0.15,
   shadowRadius: 3,
   shadowColor: 'rgba(0,0,0, 0.3)' as DefinedColor,
+  elevation: 1
 };
 
 

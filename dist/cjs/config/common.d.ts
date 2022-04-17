@@ -1,28 +1,28 @@
-import { NamedColor } from '../types';
+import { DefinedColor } from '../types';
 export declare const global: {
     base: number;
     elevation: number;
 };
 export declare const schemes: {
-    default: NamedColor;
-    primary: NamedColor;
-    secondary: NamedColor;
-    danger: NamedColor;
-    warning: NamedColor;
-    info: NamedColor;
-    success: NamedColor;
+    default: DefinedColor;
+    primary: DefinedColor;
+    secondary: DefinedColor;
+    danger: DefinedColor;
+    warning: DefinedColor;
+    info: DefinedColor;
+    success: DefinedColor;
     transparent: string;
 };
 export declare const colors: {
-    text: NamedColor;
-    muted: NamedColor;
-    card: NamedColor;
-    notification: NamedColor;
-    background: NamedColor;
-    border: NamedColor;
+    text: DefinedColor;
+    muted: DefinedColor;
+    card: DefinedColor;
+    notification: DefinedColor;
+    background: DefinedColor;
+    border: DefinedColor;
 };
 export declare const typography: {
-    color: NamedColor;
+    color: DefinedColor;
     xs: number;
     sm: number;
     body: number;
@@ -81,14 +81,28 @@ export declare const icon: {
 };
 export declare const input: {
     size: {
+        sm: {
+            height: number;
+        };
         md: {
+            height: number;
+        };
+        lg: {
             height: number;
         };
     };
 };
 export declare const button: {
     size: {
+        sm: {
+            height: number;
+            width: number;
+        };
         md: {
+            height: number;
+            width: number;
+        };
+        lg: {
             height: number;
             width: number;
         };
@@ -101,5 +115,5 @@ export declare const shadow: {
     };
     shadowOpacity: number;
     shadowRadius: number;
-    shadowColor: NamedColor;
+    shadowColor: DefinedColor;
 };
