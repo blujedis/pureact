@@ -1,5 +1,5 @@
-import { config, palette, html } from '../config';
-import { Theme,  NamedColor, ThemeNormalized, ThemeColors } from '../types';
+import { config, palette, named } from '../config';
+import { Theme, DefinedColor, ThemeColor, NamedStyles } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const noop = (...args: unknown[]) => { return; };
@@ -43,37 +43,34 @@ export const createTheme = <C extends Record<string, any>, B extends Record<stri
  * 
  * @param theme optional theme to extract colors from.
  */
-export function createColorMap<T extends ThemeNormalized>(theme: T) {
+export function createColorMap<T extends Theme>(theme: T) {
   return {
     ...palette,
-    ...html,
+    ...named,
     ...theme.colors
   };
 }
 
-/**
- * Converts an object of named colors to mapped values.
- * 
- * @param colors an object containing colors to convert to string.
- */
-export function toColor<T extends Record<string, NamedColor>>(colors: T, theme?: ThemeNormalized): Record<keyof T, string>;
 
 /**
  * Converts named color to mapped value.
  * 
  * @param color the named color to be converted.
  */
-export function toColor(color: NamedColor, theme?: ThemeNormalized): string;
-export function toColor(color: NamedColor | Record<string, NamedColor>, theme?: ThemeNormalized) {
-  const themeColors = ((theme && theme.colors) || {}) as ThemeColors;
-  if (typeof color === 'object') {
-    const result = {} as Record<string, string>;
-    for (const k in color) {
-      result[k] = toColor(color[k])
-    }
-    return result;
-  }
-  return themeColors[color as keyof typeof themeColors] || html[color as keyof typeof html] || palette[color as keyof typeof palette] || color;
+export function toColor(color: DefinedColor, theme?: Theme) {
+  // if (typeof color === 'object') {
+  //   const result = {} as Record<string, string>;
+  //   for (const k in color) {
+  //     result[k] = toColor(color[k])
+  //   }
+  //   return result;
+  // }
+  theme = theme || {} as Theme;
+  const themeColors = {
+    ...theme.colors,
+    ...theme.schemes
+  };
+  return themeColors[color as keyof typeof themeColors] || named[color as keyof typeof named] || palette[color as keyof typeof palette] || color;
 }
 
 /**
@@ -81,18 +78,32 @@ export function toColor(color: NamedColor | Record<string, NamedColor>, theme?: 
  * 
  * @param theme the theme to be normalized.
  */
-export const normalizeTheme = <T extends Theme>(theme: T) => {
-  const { colors: currentColors, schemes: currentSchemes, ...rest } = theme;
-  const schemes = toColor(currentSchemes);
-  const colors = { ...toColor(currentColors), ...schemes };
-  // Be sure to presrve original schemes in new object.
-  return {
-    schemes,
-    colors,
-    ...rest
-  } as ThemeNormalized<T>;
-};
+// export const normalizeTheme = <T extends Theme>(theme: T) => {
+//   const { colors: currentColors, schemes: currentSchemes, ...rest } = theme;
+//   const schemes = toColor(currentSchemes);
+//   const colors = { ...toColor(currentColors), ...schemes };
+//   // Be sure to presrve original schemes in new object.
+//   return {
+//     schemes,
+//     colors,
+//     ...rest
+//   };
+// };
 
-export function getIcon() {
-  
+/**
+ * Creates map of color schemes. 
+ * 
+ * @param theme the active theme.
+ * @param key the key for creating the scheme.
+ */
+export const createSchemes = <T extends Theme, K extends 'color' | 'backgroundColor' | 'borderColor'>(theme: T, key = ['backgroundColor'] as K[]) => {
+  type Schemes = Record<keyof typeof theme.schemes, NamedStyles>;
+  return Object.keys(theme.schemes).reduce((a, c) => {
+    const obj = {} as Record<K, string>;
+    key.forEach(k => {
+      obj[k] =  theme.schemes[c as keyof typeof theme.schemes];
+    });
+    a[c as keyof Schemes] = obj;
+    return a;
+  }, {} as Schemes);
 }

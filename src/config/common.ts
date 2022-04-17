@@ -1,6 +1,6 @@
 
 import palette from './palette';
-import { NamedColor } from '../types';
+import { DefinedColor } from '../types';
 
 const base = 16;
 
@@ -11,23 +11,23 @@ export const global = {
 
 // will be merged with colors below.
 export const schemes = {
-  default: palette.slate200 as NamedColor,
-  primary: palette.indigo600 as NamedColor,
-  secondary: palette.carbon600 as NamedColor,
-  danger: palette.rose600 as NamedColor,
-  warning: palette.yellow600 as NamedColor,
-  info: palette.sky600 as NamedColor,
-  success: palette.emerald600 as NamedColor,
+  default: palette.slate200 as DefinedColor,
+  primary: palette.indigo600 as DefinedColor,
+  secondary: palette.carbon600 as DefinedColor,
+  danger: palette.rose600 as DefinedColor,
+  warning: palette.yellow600 as DefinedColor,
+  info: palette.sky600 as DefinedColor,
+  success: palette.emerald600 as DefinedColor,
   transparent: palette.transparent
 };
 
 export const colors = {
-  text: palette.slate700 as NamedColor,
-  muted: palette.slate100 as NamedColor,
-  card: palette.slate100 as NamedColor,
-  notification: palette.rose600 as NamedColor,
-  background: palette.slate50 as NamedColor,
-  border: palette.slate200 as NamedColor,
+  text: palette.slate700 as DefinedColor,
+  muted: palette.slate100 as DefinedColor,
+  card: palette.slate100 as DefinedColor,
+  notification: palette.rose600 as DefinedColor,
+  background: palette.slate50 as DefinedColor,
+  border: palette.slate200 as DefinedColor,
 };
 
 export const typography = {
@@ -88,17 +88,25 @@ export const icon = {
 
 export const input = {
   size: {
-    md: {
-      height: base * 3
-    }
+    sm: { height: base * 2.75 },
+    md: { height: base * 3 },
+    lg: { height: base * 3.25 },
   }
 };
 
 export const button = {
   size: {
+    sm: {
+      height: input.size.sm.height,
+      width: input.size.sm.height * 1.6
+    },
     md: {
       height: input.size.md.height,
       width: input.size.md.height * 1.6
+    },
+    lg: {
+      height: input.size.lg.height,
+      width: input.size.lg.height * 1.6
     }
   }
 };
@@ -107,7 +115,7 @@ export const shadow = {
   shadowOffset: { width: 1, height: 2 },
   shadowOpacity: 0.15,
   shadowRadius: 3,
-  shadowColor: 'rgba(0,0,0, 0.3)' as NamedColor,
+  shadowColor: 'rgba(0,0,0, 0.3)' as DefinedColor,
 };
 
 

@@ -1,5 +1,5 @@
 import palette from './palette';
-import html from './html';
+import named from './named';
 import {
   padding, margin, radius, icon, schemes,
   colors, input, button, typography, global,
@@ -22,7 +22,7 @@ const config = {
 };
 
 export {
-  html,
+  named,
   palette,
   config
 };

@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { BasePropsWithChildren, ThemeNormalized } from '../types';
+import { BasePropsWithChildren, Theme } from '../types';
 import { View, StyleSheet, ViewProps, SafeAreaView } from 'react-native';
 import { withPureact } from '../withPureact';
 
 export type BlockStyles = ReturnType<typeof styles>;
 export type BlockStylesEnabled = Partial<Record<keyof BlockStyles, boolean>>;
 
-export interface BlockProps extends ViewProps, BlockStylesEnabled  {
+export interface BlockProps extends ViewProps, BlockStylesEnabled {
   flex?: boolean | number;
   height?: number;
   width?: number;
@@ -18,8 +18,8 @@ export interface BlockProps extends ViewProps, BlockStylesEnabled  {
 const Block: FC<BlockProps> = (props) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { 
-    theme, styles, ...clean 
+  const {
+    theme, styles, ...clean
   } = props as BasePropsWithChildren<BlockProps, BlockStyles>;
 
   const {
@@ -64,7 +64,7 @@ const Block: FC<BlockProps> = (props) => {
 
 };
 
-const styles = (theme: ThemeNormalized) => StyleSheet.create({
+const styles = (theme: Theme) => StyleSheet.create({
   column: {
     flexDirection: 'column',
   },

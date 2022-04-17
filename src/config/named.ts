@@ -1,7 +1,7 @@
-export type HTMLColor = typeof html;
+export type HTMLColor = typeof named;
 export type HTMLColorName = keyof HTMLColor;
 
-const html = {
+const named = {
   'aliceblue': '#f0f8ff',
   'antiquewhite': '#faebd7',
   'aqua': '#00ffff',
@@ -145,4 +145,4 @@ const html = {
   'yellowgreen': '#9acd32'
 };
 
-export default html;
+export default named;

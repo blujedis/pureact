@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, PropsWithChildren } from 'react';
-import { PureactContext, PureactOptions, ThemeMode, ThemeNormalized } from './types';
+import { PureactContext, PureactOptions, ThemeMode } from './types';
 import { mergeObject } from './utils/helpers'
-import { normalizeTheme } from './utils/helpers';
 import { defaultTheme } from './themes';
 
 const ThemeContext = createContext({} as PureactContext);
@@ -16,25 +15,22 @@ function ThemeProvider(props: PropsWithChildren<PureactOptions>) {
 
   const { children, theme: initTheme } = props as Required<PropsWithChildren<PureactOptions>>;
 
-  const [activeTheme, setActiveTheme] = useState(normalizeTheme(initTheme));
+  const [activeTheme, setActiveTheme] = useState(initTheme);
 
   const ctx: PureactContext = {
 
     current: activeTheme,
-
     mode: (activeTheme.dark ? 'dark' : 'light') as ThemeMode,
 
     modify: (theme) => {
       const newTheme = mergeObject(activeTheme, theme);
-      const normalized = normalizeTheme(newTheme) as unknown as ThemeNormalized;
-      setActiveTheme(normalized);
-      return normalized;
+      setActiveTheme(newTheme);
+      return newTheme;
     },
 
     replace: (theme) => {
-      const normalized = normalizeTheme(theme);
-      setActiveTheme(normalized);
-      return normalized;
+      setActiveTheme(theme);
+      return theme;
     }
 
   };

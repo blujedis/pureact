@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import { StyleSheet, ViewProps } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { withPureact } from '../withPureact';
-import { getIcon, IconFamily } from '../utils/icons';
-import { BaseProps, NamedColor, ThemeNormalized } from '../types';
+import { getIcon, IconFamily, IconNames } from '../utils/icons';
+import { BaseProps, DefinedColor, ThemeColor, Theme } from '../types';
 
 export type IconStyles = ReturnType<typeof styles>;
 export type IconStylesEnabled = Partial<Record<keyof IconStyles, boolean>>;
 
-export interface IconProps extends ViewProps, IconStylesEnabled  {
-  family: IconFamily;
-  name: string;
-  size?: number;
-  color?: NamedColor;
+export interface IconProps<F extends IconFamily = IconFamily> extends IconStylesEnabled {
+  family: F;
+  name: IconNames<F>;
+  size?: keyof Theme['icon']['size'] | number;
+  color?: DefinedColor | ThemeColor;
 }
 
 const Icon: FC<IconProps> = (props) => {
@@ -20,16 +20,33 @@ const Icon: FC<IconProps> = (props) => {
     ...props
   };
 
-  const { style, family } = props as BaseProps<IconProps, IconStyles>;
+  const { family, name, size, color, ...rest } = props as BaseProps<IconProps, IconStyles>;
 
-  const Icon = getIcon(family);
+  const IconComponent = getIcon(family);
+
+  if (!name || !IconComponent)
+    return null;
+
+  const iconProps = {
+    name,
+    size,
+    color
+  };
 
   return (
-    <></>
+    <IconComponent {...iconProps} {...rest} />
   );
+
 };
 
-const styles = (theme: ThemeNormalized) => StyleSheet.create({
-});
+const styles = (theme: Theme) => {
+
+
+  return StyleSheet.create({
+
+  });
+
+  
+}
 
 export default withPureact(Icon, styles);
