@@ -32,7 +32,7 @@ const Icon: FC<IconProps> = (props) => {
   const iconProps = {
     name,
     size: sizeAdj,
-    color
+    color: color || theme.colors.muted,
   };
 
   return (
@@ -43,7 +43,6 @@ const Icon: FC<IconProps> = (props) => {
 
 const styles = (theme: Theme) => {
   return StyleSheet.create({
-
   });
 }
 

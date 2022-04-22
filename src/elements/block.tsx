@@ -103,7 +103,6 @@ const styles = (theme: Theme) => StyleSheet.create({
   },
   shadow: {
     ...theme.shadow,
-    elevation: theme.global.elevation
   },
 });
 

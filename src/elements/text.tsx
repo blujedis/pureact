@@ -13,7 +13,6 @@ export interface TextProps extends TextPropsBase, TextStylesEnabled {
 
 const Text: FC<TextProps> = (props) => {
 
-
   const {
     theme, styles, ...clean
   } = props as BasePropsWithChildren<TextProps, TextStyles>;

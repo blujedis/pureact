@@ -16,7 +16,7 @@ export interface ButtonProps extends TouchableOpacityProps, ButtonStylesEnabled 
   size?: keyof Theme['button']['size'];
   opacity?: number;
   shadow?: ShadowProps;
-  icon?: IconProps;
+  icon?: IconProps & { position?: 'left' | 'right' };
   scheme?: keyof Theme['schemes'];
 }
 

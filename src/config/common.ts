@@ -1,4 +1,4 @@
-import {  } from 'react-native';
+import { } from 'react-native';
 import palette from './palette';
 import { DefinedColor } from '../types';
 
@@ -17,7 +17,6 @@ export const schemes = {
   warning: palette.yellow600 as DefinedColor,
   info: palette.sky600 as DefinedColor,
   success: palette.emerald600 as DefinedColor,
-  muted: palette.slate100 as DefinedColor,
   transparent: palette.transparent
 };
 
@@ -27,6 +26,7 @@ export const colors = {
   notification: palette.rose600 as DefinedColor,
   background: palette.slate50 as DefinedColor,
   border: palette.slate200 as DefinedColor,
+  muted: palette.slate200 as DefinedColor,
 };
 
 export const typography = {
